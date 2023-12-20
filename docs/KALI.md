@@ -1,0 +1,171 @@
+# KALI 2023
+
+## INSTALL
+
+> Select gnome as graphic env
+
+## FIRST
+
+**UPDATE**
+
+    sudo apt update && sudo apt upgrade -y
+>
+    sudo apt install tilix
+
+**Move app between workspaces**
+
+    gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-right "['<Super><Alt>Right']"    
+>
+    gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-left "['<Super><Alt>Left']"
+
+**Switch workspaces**
+
+    gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "['<Ctrl><Super>Left']"
+>
+    gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "['<Ctrl><Super>Right']"
+
+> Change shorcuts in settings
+
+**Oh my zsh**
+
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+>
+
+**ZSH syntax and kali color**
+
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
+>
+    nano ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+>
+    ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+    ZSH_HIGHLIGHT_STYLES[default]=none
+    ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=white,underline
+    ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=cyan,bold
+    ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=green,underline
+    ZSH_HIGHLIGHT_STYLES[global-alias]=fg=green,bold
+    ZSH_HIGHLIGHT_STYLES[precommand]=fg=green,underline
+    ZSH_HIGHLIGHT_STYLES[commandseparator]=fg=blue,bold
+    ZSH_HIGHLIGHT_STYLES[autodirectory]=fg=green,underline
+    ZSH_HIGHLIGHT_STYLES[path]=bold
+    ZSH_HIGHLIGHT_STYLES[path_pathseparator]=
+    ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]=
+    ZSH_HIGHLIGHT_STYLES[globbing]=fg=blue,bold
+    ZSH_HIGHLIGHT_STYLES[history-expansion]=fg=blue,bold
+    ZSH_HIGHLIGHT_STYLES[command-substitution]=none
+    ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter]=fg=magenta,bold
+    ZSH_HIGHLIGHT_STYLES[process-substitution]=none
+    ZSH_HIGHLIGHT_STYLES[process-substitution-delimiter]=fg=magenta,bold
+    ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=green
+    ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=green
+    ZSH_HIGHLIGHT_STYLES[back-quoted-argument]=none
+    ZSH_HIGHLIGHT_STYLES[back-quoted-argument-delimiter]=fg=blue,bold
+    ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=yellow
+    ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=yellow
+    ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]=fg=yellow
+    ZSH_HIGHLIGHT_STYLES[rc-quote]=fg=magenta
+    ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=magenta,bold
+    ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=magenta,bold
+    ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]=fg=magenta,bold
+    ZSH_HIGHLIGHT_STYLES[assign]=none
+    ZSH_HIGHLIGHT_STYLES[redirection]=fg=blue,bold
+    ZSH_HIGHLIGHT_STYLES[comment]=fg=black,bold
+    ZSH_HIGHLIGHT_STYLES[named-fd]=none
+    ZSH_HIGHLIGHT_STYLES[numeric-fd]=none
+    ZSH_HIGHLIGHT_STYLES[arg0]=fg=cyan
+    ZSH_HIGHLIGHT_STYLES[bracket-error]=fg=red,bold
+    ZSH_HIGHLIGHT_STYLES[bracket-level-1]=fg=blue,bold
+    ZSH_HIGHLIGHT_STYLES[bracket-level-2]=fg=green,bold
+    ZSH_HIGHLIGHT_STYLES[bracket-level-3]=fg=magenta,bold
+    ZSH_HIGHLIGHT_STYLES[bracket-level-4]=fg=yellow,bold
+    ZSH_HIGHLIGHT_STYLES[bracket-level-5]=fg=cyan,bold
+    ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]=standout
+
+> enable plugin .zshrc
+
+    plugins=(git sudo zsh-syntax-highlighting)
+
+**keep directory**
+
+    #inherit directory
+        if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+        source /etc/profile.d/vte.sh
+    fi
+
+>
+    sudo ln -s /etc/profile.d/vte-2.91.sh /etc/profile.d/vte.sh
+
+**Folders**
+
+    mkdir {$HOME/VPN,$HOME/Machines}
+>
+
+**config  target**
+
+    # set target
+    function set_target(){
+        read target
+        echo $target > <path>
+    }
+
+**Configure Fonts**
+
+> Download from https://www.nerdfonts.com/font-downloads
+
+    unzip NerdFontsSymbolsOnly.zip -d NerdFonts
+>
+    mkdir ~/.local/share/fonts
+>
+    cp NerdFonts/* ~/.local/share/fonts
+>
+    fc-cache -f -v
+
+**FIREFOX EXTENSION**
+
+    foxyproxy
+> 
+    ublockorigin
+> 
+    darkreader
+> 
+    wappalyzer
+> 
+    simple translate
+> 
+    gnome extension
+
+**GNOME EXTENSION**
+
+    Caffeine
+>
+    Executor
+>
+    Just Perfection
+>
+    Workspace Indicator
+>
+    [QSTweak] Quick Setting Tweaker
+>
+
+**EXECUTOR**
+
+> target
+
+    if [[ $(cat /home/ghost/VPN/.target) == "" ]]; then echo "󰓾 ---.---.---.---"; else echo "󰓾 " && cat /home/ghost/VPN/.target; fi && echo "   "
+
+> VPN
+
+    if [[ $(ip -4 addr show tun0 2>&1) == *"does not exist." ]]; then echo "󱘖 VPN Not Online"; else echo "tun0  " && ip -4 addr show tun0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'; fi && echo "   "
+
+> LAN
+
+    if [[ $(ip addr show dev eth0 | grep 'inet ' | awk '{print $2}' | cut -f1 -d'/') == "" ]]; then echo "eth0󰈂"; else echo "eth0 󰈀 " && ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'; fi && echo "   "
+
+> WIFI
+
+    if [[ $(ip addr show dev wlan0 | grep 'inet ' | awk '{print $2}' | cut -f1 -d'/') == "" ]]; then echo "wlan0󰖪"; else echo "wlan0 󱚻 " && ip -4 addr show wlan0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}';fi && echo "   "
+
+> HOSTNAME
+
+    echo "<OS-NERDFONT>"; cat /etc/hostname
+
+## SECOND APPARIENCE
