@@ -12,6 +12,10 @@
 >
     sudo apt install tilix
 
+**fix search in gnome**
+
+> disable search in settings
+
 **Move app between workspaces**
 
     gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-right "['<Super><Alt>Right']"    
@@ -24,7 +28,7 @@
 >
     gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "['<Ctrl><Super>Right']"
 
-> Change shorcuts in settings
+> Change rest of shorcuts in settings
 
 **Oh my zsh**
 
@@ -169,3 +173,5 @@
     echo "<OS-NERDFONT>"; cat /etc/hostname
 
 ## SECOND APPARIENCE
+
+> Working in this
