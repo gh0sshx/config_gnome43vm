@@ -286,7 +286,7 @@
     Interface Text => SF Pro Display Regular 10
     Document Text => SF Pro Display Regular 10
     Monospace Text => FiraCode Nerd Font Mono Retina 10
-    Legacy Window Titles => SF Pro Display Medium 10
+    Legacy Window Titles => SF Pro Display Medium 11
 
 
 
