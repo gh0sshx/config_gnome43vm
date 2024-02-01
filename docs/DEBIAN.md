@@ -16,6 +16,10 @@
 
 > disable search in settings
 
+**change applications**
+
+    gsettings set org.gnome.desktop.wm.keybindings switch-applications "['<Alt>Tab']"
+
 **Move app between workspaces**
 
     gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-right "['<Super><Alt>Right']"    
