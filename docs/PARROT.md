@@ -197,19 +197,23 @@
 
 > target
 
-    if [[ $(cat /home/ghost/VPN/.target) == "" ]]; then echo "󰓾 ---.---.---.---"; else echo "󰓾 " && cat /home/ghost/VPN/.target; fi && echo "   "
+    if [[ $(cat /home/ghost/Machines/.target) == "" ]]; then echo "  ---.---.---.---"; else echo " 󰣉 " && cat /home/ghost/Machines/.target; fi && echo " | "
 
 > VPN
 
-    if [[ $(ip -4 addr show tun0 2>&1) == *"does not exist." ]]; then echo "󱘖 VPN Not Online"; else echo "tun0  " && ip -4 addr show tun0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'; fi && echo "   "
+    if [[ $(ip -4 addr show tun0 2>&1) == *"does not exist." ]]; then echo " tun0 󱘖 Offline"; else echo " tun0 󰌘 " && ip -4 addr show tun0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'; fi && echo " | "    
 
-> LAN
+> LAN0
 
-    if [[ $(ip addr show dev eth0 | grep 'inet ' | awk '{print $2}' | cut -f1 -d'/') == "" ]]; then echo "eth0󰈂"; else echo "eth0 󰈀 " && ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'; fi && echo "   "
+    if [[ $(ip addr show dev eth0 | grep 'inet ' | awk '{print $2}' | cut -f1 -d'/') == "" ]]; then echo " eth0󰈂"; else echo " eth0 󰈀 " && ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'; fi && echo " | "
+
+> LAN1
+
+    if [[ $(ip addr show dev eth1 | grep 'inet ' | awk '{print $2}' | cut -f1 -d'/') == "" ]]; then echo " eth1󰈂"; else echo " eth1 󰈀 " && ip -4 addr show eth1 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'; fi && echo " | "    
 
 > WIFI
 
-    if [[ $(ip addr show dev wlan0 | grep 'inet ' | awk '{print $2}' | cut -f1 -d'/') == "" ]]; then echo "wlan0󰖪"; else echo "wlan0 󱚻 " && ip -4 addr show wlan0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}';fi && echo "   "
+    if [[ $(ip addr show dev wlan0 | grep 'inet ' | awk '{print $2}' | cut -f1 -d'/') == "" ]]; then echo " wlan0󰖪"; else echo " wlan0 󱚻 " && ip -4 addr show wlan0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}';fi && echo " "
 
 > HOSTNAME
 
