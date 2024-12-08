@@ -258,7 +258,7 @@
 
 **color in nano**
 
-    echo "include /usr/share/nano/*.nanorc" > ~/.nanorc
+    echo "include /usr/share/nano/*.nanorc\nset saveonexit" > ~/.nanorc
 
 **color in cat with bat**
 
